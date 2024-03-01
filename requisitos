@@ -1,0 +1,15 @@
+//parametro uma lista de pokemons
+
+//Salvar os dados : (pode ser em memória, banco de dados, arquivo de texto...).
+
+//rotas
+// GET "/api/teams" => Deverá listar todos os times registrados
+//GET "/api/teams/{}" => Busca um time registrado por usuário
+//POST "/ api/teams" =>  Rota para criação de um time, que recebe um JSON nesse formato
+
+//error quando apresentar erro, como por exemplo nome nao encontrado
+
+//DADOS PARA SEREM GUARDADO SOBRE POKEMON
+//ID
+//ALTURA
+//PESO
