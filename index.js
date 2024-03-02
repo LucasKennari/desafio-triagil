@@ -1,5 +1,5 @@
 const express = require("express");
-const team = require("./src/database/dbNaMemória/bancodedados");
+const teams = require("./src/database/dbNaMemória/bancodedados");
 const app = express();
 const port = 3000;
 
@@ -27,7 +27,9 @@ app.get("/:pokemon", async (req, res) => {
   res.json(pokemonPerfil);
 });
 
-app.get("/api/teams", () => {});
+app.get("/api/teams", (req, res) => {
+  res.json(teams);
+});
 app.get("/api/teams/:user", () => {});
 
 app.post("/api/teams", async (req, res) => {
@@ -47,7 +49,7 @@ app.post("/api/teams", async (req, res) => {
 
   let perfilPokemon = await Promise.all(resultado);
 
-  team.push([
+  teams.push([
     {
       idTeam: 1,
       user: owner,
@@ -55,6 +57,7 @@ app.post("/api/teams", async (req, res) => {
     },
   ]);
 
+  const team = teams.filter((item) => item[0].user === owner);
   res.json(team);
 });
 
