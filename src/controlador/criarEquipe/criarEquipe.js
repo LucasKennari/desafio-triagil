@@ -2,7 +2,8 @@ const teams = require("../../bancoDeDados/dbNaMemória/bancodedados");
 const getPokemon = require("../../integracao/apiPokemon");
 
 const criarEquipe = async (req, res) => {
-  const { owner, pokemons } = req.body;
+  const { user, pokemons } = req.body;
+
   try {
     const resultado = pokemons.map(async (pokemons) => {
       const dados = await getPokemon(pokemons);
@@ -27,12 +28,12 @@ const criarEquipe = async (req, res) => {
     teams.push([
       {
         idTeam: 1,
-        user: owner,
-        team: perfilPokemon,
+        owner: user,
+        pokemons: perfilPokemon,
       },
     ]);
 
-    const team = teams.filter((item) => item[0].user === owner);
+    const team = teams.filter((item) => item[0].owner === user);
 
     res.status(201).json(team);
   } catch (error) {
