@@ -1,6 +1,8 @@
 const teams = require("../bancoDeDados/dbNaMemória/bancodedados");
+const buscarUmaEquipe = require("../controlador/buscarUmaEquipe/buscarUmaEquipe");
 const criarEquipe = require("../controlador/criarEquipe/criarEquipe");
-const listarTodasAsEquipes = require("../controlador/listarTodasAsEquipes/listarTodasAsEquipes");
+const listarTodasAsEquipes = require("../controlador/listarTodasAsEquipes/listarTodosOsTimes");
+const paginaNaoEncontrada = require("../controlador/paginaNaoEncontrada/paginaNaoEncontrada");
 const intermediario = require("../intermediario/intermediario");
 
 const rotas = require("express")();
@@ -22,7 +24,8 @@ rotas.get("/:pokemon", async (req, res) => {
 });
 
 rotas.get("/api/teams", listarTodasAsEquipes);
-rotas.get("/api/teams/:user", () => {});
+rotas.get("/api/teams/:user", buscarUmaEquipe);
+rotas.get("/api/*", paginaNaoEncontrada);
 
 rotas.post("/api/teams", intermediario, criarEquipe);
 module.exports = rotas;
