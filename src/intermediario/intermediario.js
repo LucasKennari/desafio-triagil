@@ -7,10 +7,12 @@ const intermediario = async (req, res, next) => {
     if (!user || !user.trim()) {
       return res
         .status(404)
-        .json({ Mensagem: "Por favor insira um nome na propriedade owner" });
+        .json({ Mensagem: "Verifique se todos os campos foram preenchidos" });
     }
     if (pokemons.includes([])) {
-      return res.status(404).json({ Mensagem: "Por favor insira coloque []" });
+      return res
+        .status(404)
+        .json({ Mensagem: "Por favor insira os pokemons dentro de: []" });
     }
 
     const pokemon = await verificarPokemonsNoBody(pokemons);
@@ -18,7 +20,7 @@ const intermediario = async (req, res, next) => {
     if (!pokemon) {
       return res
         .status(404)
-        .json({ Mensagem: "Está faltando um pokemon no array" });
+        .json({ Mensagem: "Verifique se todos os campos foram preenchidos" });
     }
 
     next();
