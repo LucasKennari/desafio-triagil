@@ -1,7 +1,11 @@
-const teams = require("../../bancoDeDados/dbNaMemória/bancodedados");
+const {
+  teams,
+  incrementadorId,
+} = require("../../bancoDeDados/dbNaMemória/bancodedados");
+const buscarTimePeloOwner = require("../../bancoDeDados/functionQuerys/buscarTimePeloOwner");
 const getPokemon = require("../../integracao/apiPokemon");
 
-const criarEquipe = async (req, res) => {
+const criarUmTime = async (req, res) => {
   const { user, pokemons } = req.body;
 
   try {
@@ -27,18 +31,18 @@ const criarEquipe = async (req, res) => {
 
     teams.push([
       {
-        idTeam: 1,
+        id: incrementadorId(teams),
         owner: user,
         pokemons: perfilPokemon,
       },
     ]);
 
-    const team = teams.filter((item) => item[0].owner === user);
+    const timeEncontrado = await buscarTimePeloOwner(teams, user);
 
-    res.status(201).json(team);
+    res.status(201).json({ id: timeEncontrado[0].id });
   } catch (error) {
     return res.status(404).json({ mensagem: error.message });
   }
 };
 
-module.exports = criarEquipe;
+module.exports = criarUmTime;
