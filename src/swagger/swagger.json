@@ -1,0 +1,169 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "api de pokemon",
+    "description": "Esta API tem como objetivo de",
+    "contact": {
+      "email": "lucas.oheisen@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "API de teste"
+    },
+    {
+      "url": "___LINK____DO___DEPLOY____",
+      "description": "API de producao"
+    }
+  ],
+  "paths": {
+    "/api/teams": {
+      "post": {
+        "summary": "Rota de cadastrar um novo time",
+        "description": "Essa rota será responsável por cadastrar um novo time",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "user": {
+                  "value": {
+                    "user": "Ash",
+                    "pokemons": ["pikachu", "blastoise", "charizard"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "500": {
+            "description": "Erro interno do servidorr"
+          },
+          "400": {
+            "description": "Verifique se todos os campos foram preenchidos"
+          },
+          "404": {
+            "description": "Pokemon não encontrado"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "array",
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Rota de listar todos os times existentes",
+        "description": "Esta rota é responsável por listar todos os times",
+        "responses": {
+          "500": {
+            "description": "Error interno do servidor"
+          },
+
+          "404": {
+            "description": "Nenhum time encontrado"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "resposta": {
+                    "value": {
+                      "idTeam": 1,
+                      "owner": "lucas",
+                      "pokemons": [
+                        {
+                          "id": 25,
+                          "name": "pikachu",
+                          "weight": 60,
+                          "height": 4
+                        },
+                        {
+                          "id": 9,
+                          "name": "blastoise",
+                          "weight": 855,
+                          "height": 16
+                        },
+                        {
+                          "id": 6,
+                          "name": "charizard",
+                          "weight": 905,
+                          "height": 17
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/teams/{user}": {
+      "get": {
+        "description": "Busca um time pelo user",
+        "summary": "Rota de buscar um time pelo user",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "path",
+            "description": "Nome do user",
+            "required": true
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Error interno do servidor"
+          },
+          "400": {
+            "description": "Nenhum time encontrado com esse user"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string"
+          },
+          "pokemons": {
+            "type": "array",
+            "items": {}
+          }
+        }
+      }
+    }
+  }
+}
