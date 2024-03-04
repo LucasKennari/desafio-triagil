@@ -18,9 +18,7 @@ const intermediario = async (req, res, next) => {
     const pokemon = await verificarPokemonsNoBody(pokemons);
 
     if (!pokemon) {
-      return res
-        .status(404)
-        .json({ Mensagem: "Verifique se todos os campos foram preenchidos" });
+      return res.status(404).json({ Mensagem: "Pokemon informado não existe" });
     }
 
     next();

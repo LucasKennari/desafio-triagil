@@ -6,7 +6,7 @@ const buscarUmTime = async (req, res) => {
   try {
     const timeEncontrado = await buscarTimePeloOwner(teams, user);
 
-    if (!timeEncontrado[0]) {
+    if (!timeEncontrado) {
       return res
         .status(400)
         .json({ mensagem: "Nenhum time encontrado com esse user" });

@@ -29,17 +29,15 @@ const criarUmTime = async (req, res) => {
         .json({ mensagem: "Não foi possível adicionar o perfil do pokemon" });
     }
 
-    teams.push([
-      {
-        id: incrementadorId(teams),
-        owner: user,
-        pokemons: perfilPokemon,
-      },
-    ]);
+    teams.push({
+      id: incrementadorId(teams),
+      owner: user,
+      pokemons: perfilPokemon,
+    });
 
     const timeEncontrado = await buscarTimePeloOwner(teams, user);
 
-    res.status(201).json({ id: timeEncontrado[0].id });
+    res.status(201).json({ id: timeEncontrado.id });
   } catch (error) {
     return res.status(404).json({ mensagem: error.message });
   }
