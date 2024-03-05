@@ -1,5 +1,6 @@
 const { teams } = require("../../bancoDeDados/dbNaMemória/bancodedados");
 const buscarTimePeloOwner = require("../../bancoDeDados/functionQuerys/buscarTimePeloOwner");
+const errorMsg = require("../../utils/conttroleDeError/controleDeError");
 
 const buscarUmTime = async (req, res) => {
   const { user } = req.params;
@@ -8,13 +9,13 @@ const buscarUmTime = async (req, res) => {
 
     if (!timeEncontrado) {
       return res
-        .status(400)
-        .json({ mensagem: "Nenhum time encontrado com esse user" });
+        .status(404)
+        .json(errorMsg[404].msgUserNaoEncontrado);
     }
     return res.status(200).json(timeEncontrado);
   } catch (error) {
     console.log(error.message);
-    res.status(500).json({ Error: "Erro interno do servidor" });
+    res.status(500).json(errorMsg[500]);
   }
 };
 

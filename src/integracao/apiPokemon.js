@@ -1,3 +1,5 @@
+const errorMsg = require("../utils/conttroleDeError/controleDeError");
+
 async function getPokemon(pokemons) {
   let error;
   let dados;
@@ -7,9 +9,9 @@ async function getPokemon(pokemons) {
     `https://pokeapi.co/api/v2/pokemon/${pokemons}`
   );
   if (requisicao.status === 404) {
-    throw new Error("Pokemon não Encontrado");
+    throw new Error(errorMsg[404].msgPokemonNaoEncontrado.Mensagem);
   } else if (!requisicao.ok) {
-    throw new Error("Erro interno do servidor");
+    throw new Error(errorMsg[500]);
   }
 
   dados = await requisicao.json();

@@ -13,4 +13,7 @@ rotas.get("/api/teams/:user", buscarUmTime);
 rotas.get("/api/*", paginaNaoEncontrada);
 
 rotas.post("/api/teams", intermediario, criarUmTime);
+rotas.post("/api/*", paginaNaoEncontrada)
+
+rotas.delete("/*/**", paginaNaoEncontrada)
 module.exports = rotas;

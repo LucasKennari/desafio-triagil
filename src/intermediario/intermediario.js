@@ -1,29 +1,30 @@
+const errorMsg = require("../utils/conttroleDeError/controleDeError");
 const verificarPokemonsNoBody = require("../utils/verificarPokemonsNoBody");
 
 const intermediario = async (req, res, next) => {
   const { user, pokemons } = req.body;
-
+  
   try {
     if (!user || !user.trim()) {
       return res
-        .status(404)
-        .json({ Mensagem: "Verifique se todos os campos foram preenchidos" });
+                .status(400).json(errorMsg[400].msgCampos)
     }
     if (pokemons.includes([])) {
       return res
-        .status(404)
-        .json({ Mensagem: "Por favor insira os pokemons dentro de: []" });
+        .status(400)
+        .json(errorMsg[400].msgCampoIncorreto);
     }
 
     const pokemon = await verificarPokemonsNoBody(pokemons);
 
     if (!pokemon) {
-      return res.status(404).json({ Mensagem: "Pokemon informado não existe" });
+      return res.status(404).json(errorMsg[404].msgCampoIncorreto);
     }
 
     next();
   } catch (error) {
-    return res.status(500).json({ Error: "Error interno do servidor." });
+    
+    return res.status(500).json(errorMsg[500]);
   }
 };
 
