@@ -14,7 +14,7 @@
 > ###  <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" height="25" margin="0" align="center"/> Testando na sua máquina
 >
 > 1. Crie um fork!
-> 2. Utilize o comando para clonar no seu PC: `git clone LINK_DO_PROJETO` 
+> 2. Utilize o comando para clonar no seu PC: `git clone LINK_SSH/HTTPS` 
 > 3. Utilize o comando para instalar o docker: `docker-compose up`
 > 4. Abra a documentação da api rota [API-DOCS](http://localhost:3000/api-docs)
 
