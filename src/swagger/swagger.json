@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "api de pokemon",
-    "description": "Esta API tem como objetivo de",
+    "title": "POKEMON API",
+    "description": "Esta API tem como objetivo de consumir a POKE API",
     "contact": {
       "email": "lucas.oheisen@gmail.com"
     },
@@ -12,10 +12,6 @@
     {
       "url": "http://localhost:3000",
       "description": "API de teste"
-    },
-    {
-      "url": "___LINK____DO___DEPLOY____",
-      "description": "API de producao"
     }
   ],
   "paths": {
@@ -42,13 +38,13 @@
         },
         "responses": {
           "500": {
-            "description": "Erro interno do servidorr"
+            "description": "ERROR INTERNO DO SERVIDOR."
           },
           "400": {
-            "description": "Verifique se todos os campos foram preenchidos"
+            "description": "VERIFIQUE SE TODOS OS CAMPOS FORAM PREENCHIDOS."
           },
           "404": {
-            "description": "Pokemon não encontrado"
+            "description": "POKEMON NÃO ENCONTRADO"
           },
           "201": {
             "description": "Created",
@@ -70,11 +66,11 @@
         "description": "Esta rota é responsável por listar todos os times",
         "responses": {
           "500": {
-            "description": "Error interno do servidor"
+            "description": "ERROR INTERNO DO SERVIDOR."
           },
 
           "404": {
-            "description": "Nenhum time encontrado"
+            "description": "NÃO POSSUI NENHUM TIME CADASTRADO."
           },
           "200": {
             "description": "OK",
@@ -128,10 +124,10 @@
         ],
         "responses": {
           "500": {
-            "description": "Error interno do servidor"
+            "description": "ERROR INTERNO DO SERVIDOR."
           },
-          "400": {
-            "description": "Nenhum time encontrado com esse user"
+          "404": {
+            "description": "USER INFORMADO NÃO ENCONTRADO"
           },
           "200": {
             "description": "OK",
