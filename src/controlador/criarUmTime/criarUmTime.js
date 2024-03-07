@@ -25,22 +25,22 @@ const criarUmTime = async (req, res) => {
     let perfilPokemon = await Promise.all(resultado);
 
     if (!perfilPokemon) {
-      return res
-        .status(400)
-        .json(errorMsg[400].msgErrorAoAddPokemon);
+      return res.status(400).json(errorMsg[400].msgErrorAoAddPokemon);
     }
 
-    teams.push({
+    let perfil = {
       id: incrementadorId(teams),
       owner: user,
       pokemons: perfilPokemon,
-    });
+    };
 
-    const timeEncontrado = await buscarTimePeloOwner(teams, user);
+    teams.push(perfil);
+
+    const timeEncontrado = await buscarTimePeloOwner(teams, user, perfil);
 
     res.status(201).json({ id: timeEncontrado.id });
   } catch (error) {
-    return res.status(404).json({Mensagem: error.message} );
+    return res.status(404).json({ Mensagem: error.message });
   }
 };
 
