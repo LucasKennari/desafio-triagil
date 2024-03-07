@@ -40,7 +40,7 @@ const criarUmTime = async (req, res) => {
 
     res.status(201).json({ id: timeEncontrado.id });
   } catch (error) {
-    return res.status(404).json({ Mensagem: error.message });
+    return res.status(404).json({ Error: error.message });
   }
 };
 
